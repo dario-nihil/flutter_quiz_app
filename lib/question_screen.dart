@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:quiz_app/answer_button.dart';
 import 'package:quiz_app/data/questions.dart';
@@ -11,9 +12,17 @@ class QuestionScreen extends StatefulWidget {
 }
 
 class _QuestionScreenState extends State<QuestionScreen> {
+  var currentQuestionIdx = 0;
+
+  void answerQuestion() {
+    setState(() {
+      currentQuestionIdx++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final currentQuestion = questions[0];
+    final currentQuestion = questions[currentQuestionIdx];
 
     return SizedBox(
       width: double.infinity,
@@ -23,10 +32,12 @@ class _QuestionScreenState extends State<QuestionScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text(
-              'The question...',
-              style: TextStyle(
-                color: Colors.white,
+            Text(
+              currentQuestion.text,
+              style: GoogleFonts.lato(
+                color: const Color.fromARGB(255, 201, 153, 251),
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
             ),
@@ -36,7 +47,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
             ...currentQuestion.getShuffledAnswer().map(
                   (answer) => AnswerButton(
                     answer,
-                    () {},
+                    answerQuestion,
                   ),
                 )
           ],
