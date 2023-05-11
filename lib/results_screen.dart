@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:quiz_app/data/questions.dart';
+import 'package:quiz_app/questions_summary.dart';
 
 class ResultsScreen extends StatelessWidget {
   const ResultsScreen(this.chosenAnswers, {super.key});
@@ -26,29 +27,28 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        width: double.infinity,
-        child: Container(
-          margin: const EdgeInsets.all(40),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('You answer X out of Y questions correctly'),
-              const SizedBox(
-                height: 30,
-              ),
-              const Text('Lists of asnwers and quesions...'),
-              const SizedBox(
-                height: 30,
-              ),
-              TextButton(
-                onPressed: () {},
-                child: const Text(
-                  'Restart Quiz!',
-                ),
-              )
-            ],
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.all(40),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text('You answer X out of Y questions correctly'),
+          const SizedBox(
+            height: 30,
           ),
-        ));
+          QuestionsSummary(getSummaryData()),
+          const SizedBox(
+            height: 30,
+          ),
+          TextButton(
+            onPressed: () {},
+            child: const Text(
+              'Restart Quiz!',
+            ),
+          )
+        ],
+      ),
+    );
   }
 }

@@ -28,36 +28,34 @@ class _QuestionScreenState extends State<QuestionScreen> {
   Widget build(BuildContext context) {
     final currentQuestion = questions[currentQuestionIdx];
 
-    return SizedBox(
+    return Container(
       width: double.infinity,
-      child: Container(
-        margin: const EdgeInsets.all(40),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              currentQuestion.text,
-              style: GoogleFonts.lato(
-                color: const Color.fromARGB(255, 201, 153, 251),
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
+      margin: const EdgeInsets.all(40),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            currentQuestion.text,
+            style: GoogleFonts.lato(
+              color: const Color.fromARGB(255, 201, 153, 251),
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
             ),
-            const SizedBox(
-              height: 30,
-            ),
-            ...currentQuestion.getShuffledAnswer().map(
-                  (answer) => AnswerButton(
-                    answer,
-                    () {
-                      answerQuestion(answer);
-                    },
-                  ),
-                )
-          ],
-        ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          ...currentQuestion.getShuffledAnswer().map(
+                (answer) => AnswerButton(
+                  answer,
+                  () {
+                    answerQuestion(answer);
+                  },
+                ),
+              )
+        ],
       ),
     );
   }
