@@ -1,7 +1,28 @@
 import 'package:flutter/material.dart';
 
+import 'package:quiz_app/data/questions.dart';
+
 class ResultsScreen extends StatelessWidget {
-  const ResultsScreen({super.key});
+  const ResultsScreen(this.chosenAnswers, {super.key});
+
+  final List<String> chosenAnswers;
+
+  List<Map<String, Object>> getSummaryData() {
+    final List<Map<String, Object>> summary = [];
+
+    for (int idx = 0; idx < chosenAnswers.length; idx++) {
+      summary.add(
+        {
+          'question_idx': idx,
+          'question': questions[idx].text,
+          'correct_answer': questions[idx].answers[0],
+          'user_answer': chosenAnswers[idx],
+        },
+      );
+    }
+
+    return summary;
+  }
 
   @override
   Widget build(BuildContext context) {
